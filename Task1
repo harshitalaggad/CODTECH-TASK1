@@ -1,0 +1,87 @@
+package grade_tracker;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class gradeTracker {
+    private ArrayList<Double> grades;
+    
+    public gradeTracker() {
+        grades = new ArrayList<>();
+    }
+    
+    public void addGrade(double grade) {
+        grades.add(grade);
+    }
+    
+    public double calculateAverage() {
+        double sum = 0;
+        for (double grade : grades) {
+            sum += grade;
+        }
+        return grades.size() == 0 ? 0 : sum / grades.size();
+    }
+    
+    public char getLetterGrade(double average) {
+        if (average >= 90) {
+            return 'A';
+        } else if (average >= 80) {
+            return 'B';
+        } else if (average >= 70) {
+            return 'C';
+        } else if (average >= 60) {
+            return 'D';
+        } else {
+            return 'F';
+        }
+    }
+    
+    public double getGPA(double average) {
+        if (average >= 90) {
+            return 4.0;
+        } else if (average >= 80) {
+            return 3.0;
+        } else if (average >= 70) {
+            return 2.0;
+        } else if (average >= 60) {
+            return 1.0;
+        } else {
+            return 0.0;
+        }
+    }
+    
+    public void displayGrades() {
+        double average = calculateAverage();
+        char letterGrade = getLetterGrade(average);
+        double gpa = getGPA(average);
+        
+        System.out.println("Average Grade: " + average);
+        System.out.println("Letter Grade: " + letterGrade);
+        System.out.println("GPA: " + gpa);
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        gradeTracker manager = new gradeTracker();
+        
+        System.out.println("Enter grades for different subjects or assignments out of 100(type 'done' to finish):");
+        
+        while (true) {
+            String input = scanner.nextLine();
+            
+            if (input.equalsIgnoreCase("done")) {
+                break;
+            }
+            
+            try {
+                double grade = Double.parseDouble(input);
+                manager.addGrade(grade);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid grade or type 'done' to finish.");
+            }
+        }
+        
+        manager.displayGrades();
+        scanner.close();
+    }
+}
+
