@@ -5,7 +5,7 @@ Company: CODTECH IT SOLUTIONS
 ID: :CT12JD181
 Domain: java programming
 Duration: 25th MAY 2024 to 25th JULY 2024”
-Mentor: SRAVANI GOUNI
+Mentor: Neela Harish
 
 
 **STUDENT GRADE TRACKER**
